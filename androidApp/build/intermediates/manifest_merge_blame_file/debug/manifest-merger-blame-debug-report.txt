@@ -1,0 +1,105 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.nasir.nazsay.android"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml
+10
+11    <application
+11-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:5:5-17:19
+12        android:allowBackup="false"
+12-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:6:9-36
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.7.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/3e2a2ff7531ffc1827d72f1bb4f129fd/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
+14        android:debuggable="true"
+15        android:extractNativeLibs="false"
+16        android:supportsRtl="true"
+16-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:7:9-35
+17        android:testOnly="true"
+18        android:theme="@style/AppTheme" >
+18-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:8:9-40
+19        <activity
+19-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:9:9-16:20
+20            android:name="com.nasir.nazsay.android.MainActivity"
+20-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:10:13-41
+21            android:exported="true" >
+21-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:11:13-36
+22            <intent-filter>
+22-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:12:13-15:29
+23                <action android:name="android.intent.action.MAIN" />
+23-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:13:17-69
+23-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:13:25-66
+24
+25                <category android:name="android.intent.category.LAUNCHER" />
+25-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:14:17-77
+25-->/Users/nasirahmedmomin/Documents/Test Codes/KMM/TaskManagment/iNeuron-Hackathon/androidApp/src/main/AndroidManifest.xml:14:27-74
+26            </intent-filter>
+27        </activity>
+28        <activity
+28-->[androidx.compose.ui:ui-tooling:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/18fbf297de475bbe6268818286d54416/transformed/ui-tooling-1.1.0-beta01/AndroidManifest.xml:25:9-27:39
+29            android:name="androidx.compose.ui.tooling.PreviewActivity"
+29-->[androidx.compose.ui:ui-tooling:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/18fbf297de475bbe6268818286d54416/transformed/ui-tooling-1.1.0-beta01/AndroidManifest.xml:26:13-71
+30            android:exported="true" />
+30-->[androidx.compose.ui:ui-tooling:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/18fbf297de475bbe6268818286d54416/transformed/ui-tooling-1.1.0-beta01/AndroidManifest.xml:27:13-36
+31        <activity
+31-->[androidx.compose.ui:ui-test-manifest:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/efe5443128e92d0802285a17d133b24c/transformed/ui-test-manifest-1.1.0-beta01/AndroidManifest.xml:25:9-27:39
+32            android:name="androidx.activity.ComponentActivity"
+32-->[androidx.compose.ui:ui-test-manifest:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/efe5443128e92d0802285a17d133b24c/transformed/ui-test-manifest-1.1.0-beta01/AndroidManifest.xml:26:13-63
+33            android:exported="true" />
+33-->[androidx.compose.ui:ui-test-manifest:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/efe5443128e92d0802285a17d133b24c/transformed/ui-test-manifest-1.1.0-beta01/AndroidManifest.xml:27:13-36
+34
+35        <provider
+35-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+36            android:name="androidx.startup.InitializationProvider"
+36-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:27:13-67
+37            android:authorities="com.nasir.nazsay.android.androidx-startup"
+37-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:28:13-68
+38            android:exported="false" >
+38-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:29:13-37
+39            <meta-data
+39-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+40                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+40-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:32:17-75
+41                android:value="androidx.startup" />
+41-->[androidx.emoji2:emoji2:1.0.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/a77242c18382882acb933a41f0c8096e/transformed/emoji2-1.0.0/AndroidManifest.xml:33:17-49
+42            <meta-data
+42-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:31:13-33:52
+43                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+43-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:32:17-85
+44                android:value="androidx.startup" />
+44-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:33:17-49
+45            <meta-data
+45-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/521d26eeb0835012baff01fc0d7d0bb3/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+46                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+46-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/521d26eeb0835012baff01fc0d7d0bb3/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+47                android:value="androidx.startup" />
+47-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/nasirahmedmomin/.gradle/caches/transforms-3/521d26eeb0835012baff01fc0d7d0bb3/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+48        </provider>
+49
+50        <receiver
+50-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:36:9-45:20
+51            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+51-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:37:13-76
+52            android:directBootAware="false"
+52-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:38:13-44
+53            android:enabled="true"
+53-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:39:13-35
+54            android:exported="true"
+54-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:40:13-36
+55            android:permission="android.permission.DUMP" >
+55-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:41:13-57
+56            <intent-filter>
+56-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:42:13-44:29
+57                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+57-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:43:17-91
+57-->[androidx.profileinstaller:profileinstaller:1.1.0-beta01] /Users/nasirahmedmomin/.gradle/caches/transforms-3/76fd5df1bd41441fd1b516f39ae82054/transformed/profileinstaller-1.1.0-beta01/AndroidManifest.xml:43:25-88
+58            </intent-filter>
+59        </receiver>
+60    </application>
+61
+62</manifest>

@@ -26,6 +26,31 @@ kotlin {
         val commonMain by getting {
             dependencies {
                // implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+
+                val coroutine_version = "1.3.8"
+                val moko_mvvm_version = "1.0.0"
+                val serializer_version = "1.0.0"
+                val kodeinVersion = "6.2.0"
+
+                api ("org.jetbrains.kotlin:kotlin-stdlib-common")
+
+
+
+                // COROUTINES
+                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutine_version")
+
+                // MOKO - MVVM
+//                implementation ("dev.icerock.moko:mvvm:$moko_mvvm_version")
+
+                // SERIALIZATION
+//                implementation ("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializer_version")
+
+                // KODE IN
+//                implementation ("org.kodein.di:kodein-di-core:$kodeinVersion")
+//                implementation ("org.kodein.di:kodein-di-erased:$kodeinVersion")
+
+                // FIRE STORE
+                implementation ("co.touchlab:firestore:0.2.5")
             }
         }
         val commonTest by getting {

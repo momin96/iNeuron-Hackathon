@@ -160,14 +160,6 @@ __attribute__((swift_name("ErrorState")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Greeting")))
-@interface SharedGreeting : SharedBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (NSString *)greeting __attribute__((swift_name("greeting()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GroupListViewModel")))
 @interface SharedGroupListViewModel : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -208,14 +200,6 @@ __attribute__((swift_name("MembersGroup")))
 @property (readonly) int32_t id __attribute__((swift_name("id")));
 @property (readonly) NSArray<SharedUser *> *members __attribute__((swift_name("members")));
 @property (readonly) NSString *name __attribute__((swift_name("name")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Platform")))
-@interface SharedPlatform : SharedBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-@property (readonly) NSString *platform __attribute__((swift_name("platform")));
 @end;
 
 __attribute__((objc_subclassing_restricted))

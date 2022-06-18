@@ -4,8 +4,3 @@
 *.dex
 *.ap_
 *.txt
-*.tab
-androidApp/build/kotlin/compileDebugKotlin/caches-jvm/jvm
-androidApp/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin
-androidApp/build/kotlin/compileDebugKotlin/caches-jvm/lookups
-*.class

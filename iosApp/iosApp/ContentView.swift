@@ -16,8 +16,8 @@ struct ContentView: View {
 
     @StateObject var viewModel = UserViewModel()
     
-	var body: some View {
-		
+    var body: some View {
+        
         AddTaskView()
 //        List {
 //            ForEach($viewModel.userList, id: \.self) { user in
@@ -25,35 +25,48 @@ struct ContentView: View {
 //            }
 //        }
         
-	}
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }
 
 
 struct AddTaskView: View {
     
     @State private var taskName: String = ""
+    @State private var users: [User] = [User]()
+
     
     var body: some View {
         
-        Form {
+        NavigationView {
+            
             VStack {
                 TextField("Enter task name", text: $taskName)
                 
-                
+                if users.isEmpty {
+                    NavigationLink {
+                        UserListView(bindingUser: $users)
+                    } label: {
+                        Text("Select Members")
+                    }
+                } else {
+                    List {
+                        ForEach(users, id: \.self) { user in
+                            /*@START_MENU_TOKEN@*/Text(user.name)/*@END_MENU_TOKEN@*/
+                        }
+                    }
+                }
+                Button {
+                    
+                } label: {
+                    Text("Create Task")
+                }
             }
-            Button {
-                
-            } label: {
-                Text("Create Task")
-            }
-
-            
         }
     }
 }
@@ -71,28 +84,37 @@ struct UserListView: View {
     let users = [User("A"), User("B"), User("C"), User("D")]
     
     @Binding var bindingUser: [User]
-    
+    @State private var usersList = [User]()
     
     var body: some View {
-      
-        List {
-            ForEach(users, id: \.self) { user in
-                
-                Button {
+        VStack {
+            List {
+                ForEach(users, id: \.self) { user in
                     
-                    if let removalIndex = bindingUser.firstIndex(of: user) {
-                        bindingUser.remove(at: removalIndex)
-                    } else {
-                        bindingUser.append(user)
-
+                    Button {
+                        if let removalIndex = usersList.firstIndex(of: user) {
+                            usersList.remove(at: removalIndex)
+                        } else {
+                            usersList.append(user)
+                        }
+                    } label: {
+                        HStack {
+                            Text(user.name)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            if usersList.contains(user) {
+                                Image(systemName: "checkmark")
+                            }
+                        }
                     }
-                    
-                } label: {
-                    Text(user.name)
-                        .foregroundColor(.primary)
                 }
             }
+            
+            Button {
+                bindingUser = usersList
+            } label: {
+                Text("Done")
+            }
         }
-        
     }
 }

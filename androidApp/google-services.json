@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "941414901415",
+    "project_id": "ineuron-kmm",
+    "storage_bucket": "ineuron-kmm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941414901415:android:2845a036ae3873540a1d82",
+        "android_client_info": {
+          "package_name": "com.nasir.nazsay.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941414901415-6p4m2g084fr4p83khch3ssv7hcstfn7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU4q1eD-AXY1umUMJza6J_sNYNWSh1LMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941414901415-6p4m2g084fr4p83khch3ssv7hcstfn7g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "941414901415-ijpt8cqikqsamnkfttfgph046jaiseqq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nasir.ineuron-kmm"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

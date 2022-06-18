@@ -13,10 +13,16 @@ import SwiftUI
 
 class TaskStore: ObservableObject {
     
+    @Published var errorMessage: String?
+    
     let taskViewModel = TaskViewModel()
     
     func createTask(with name: String, users: [User]) {
-        taskViewModel.createTask(name: name, users: users)
+        taskViewModel.createTask(name: name, users: users) { [weak self] state in
+            if let state = state as? ErrorState {
+                self?.errorMessage = state.throwable.message
+            }
+        }
     }
 }
 
@@ -28,6 +34,13 @@ struct AddTaskView: View {
     @State private var users: [User] = [User]()
     @State private var showGroupSheet = false
     @State private var showErrorAlert = false
+    
+    private var errorBinding: Binding<Bool> {
+        Binding<Bool> { store.errorMessage != nil }
+        set: { _ in
+            store.errorMessage = nil
+        }
+    }
     
     var navigationTitle: String {
         if taskName.isEmpty {
@@ -66,8 +79,8 @@ struct AddTaskView: View {
                         }
                     }
                 }
-                .alert("Please provide task name & members for it",
-                       isPresented: $showErrorAlert) {
+                .alert(store.errorMessage ?? "",
+                       isPresented: errorBinding) {
                     Text("Error")
                 }
                 
@@ -86,13 +99,7 @@ struct AddTaskView: View {
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
                     Button {
-                        if !taskName.isEmpty && !users.isEmpty {
-                            store.createTask(with: taskName, users: users)
-                        } else {
-                            // show error alert
-                            showErrorAlert = true
-                        }
-                        
+                        store.createTask(with: taskName, users: users)
                     } label: {
                         Text("Create")
                     }

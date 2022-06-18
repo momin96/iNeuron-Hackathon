@@ -1,10 +1,17 @@
 package com.nasir.nazsay
-//import kotlinx.datetime.Clock
-//import kotlinx.datetime.TimeZone
-//import kotlinx.datetime.toLocalDateTime
+
+sealed class DataState
+object LoadingState : DataState()
+class ErrorState(var throwable: Throwable) : DataState()
+data class SuccessState<T>(
+    val data: T,
+) : DataState()
+
+//object Complete : DataState()
 
 data class User(val id: Int, val name: String) {
 }
+
 
 class UserListViewModel {
     fun usersList(): List<User> {
@@ -15,8 +22,21 @@ class UserListViewModel {
 class TaskViewModel {
 
     // create task
-    fun createTask(name: String, users: List<User>) {
+    fun createTask(name: String, users: List<User>, response: (DataState) -> Unit) {
+
+        response(LoadingState)
+
         // generates random id
+
+        if (name.isEmpty()) {
+            response(ErrorState(Throwable("Name is required")))
+        } else if (users.isEmpty()) {
+            response(ErrorState(Throwable("Please select users")))
+        } else {
+            response(SuccessState(User(1, name)))
+        }
+
+
         val id = (1..10000000).random()
         val task = Task(id, name, users)
 
@@ -30,16 +50,6 @@ class TaskViewModel {
         // store task
     }
 }
-
-sealed class DataState
-object LoadingState : DataState()
-class ErrorState(var throwable: Throwable) : DataState()
-data class SuccessState<T>(
-    val data: T,
-) : DataState()
-
-//object Complete : DataState()
-
 
 class GroupViewModel {
     fun createGroup(name: String, users: List<User>, response: (DataState) -> Unit) {

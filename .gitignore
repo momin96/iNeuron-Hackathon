@@ -23,3 +23,7 @@ androidApp/build/kotlin
 androidApp/build/outputs
 androidApp/build/tmp
 shared
+androidApp/build/intermediates/incremental/packageDebug
+androidApp/build/intermediates/incremental
+androidApp/build/intermediates/merged_res_blame_folder
+androidApp/build/intermediates

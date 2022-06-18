@@ -64,7 +64,7 @@ struct GroupView: View {
                     
 //                    Section() {
 //                        HStack {
-//                            
+//
 //                        }
 //                    }
                     
@@ -100,11 +100,10 @@ struct GroupView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
-                        dismiss()
+                        store.createGroup(with: groupName, users: users)
                     } label: {
                         Text("Create")
                     }
-                    
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {

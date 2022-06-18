@@ -3,3 +3,14 @@ iosApp/Pods/Local Podspecs/shared.podspec.json
 iosApp/iosApp.xcworkspace/xcuserdata/nasirahmedmomin.xcuserdatad/UserInterfaceState.xcuserstate
 iosApp/Pods/Pods.xcodeproj/project.pbxproj
 iosApp/Pods/Manifest.lock
+androidApp/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/_qgtdzoEZFytAnzfSWGpk4Ik26M=
+androidApp/build/intermediates/incremental/debug-mergeJavaRes/merge-state
+shared/build/cocoapods/framework/shared.framework/Headers/placeholder.h
+shared/build/cocoapods/framework/shared.framework/Modules/module.modulemap
+shared/build/kotlin
+shared/build/cocoapods/framework/shared.framework
+androidApp/build/intermediates/incremental/debug-mergeJavaRes
+shared/build/cocoapods/framework/shared.framework/Modules/module.modulemap
+shared/build/cocoapods/framework/shared.framework/shared
+shared/build/cocoapods/framework/shared.framework/Info.plist
+shared/build/kotlin/compileDebugKotlinAndroid

@@ -1,0 +1,5 @@
+.gradle
+iosApp/Pods/Local Podspecs/shared.podspec.json
+iosApp/iosApp.xcworkspace/xcuserdata/nasirahmedmomin.xcuserdatad/UserInterfaceState.xcuserstate
+iosApp/Pods/Pods.xcodeproj/project.pbxproj
+iosApp/Pods/Manifest.lock

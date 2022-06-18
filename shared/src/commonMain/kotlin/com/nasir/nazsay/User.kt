@@ -30,3 +30,30 @@ class TaskViewModel {
         // store task
     }
 }
+
+sealed class DataState
+object LoadingState : DataState()
+class ErrorState(var throwable: Throwable) : DataState()
+data class SuccessState<T>(
+    val data: T,
+) : DataState()
+
+//object Complete : DataState()
+
+
+class GroupViewModel {
+    fun createGroup(name: String, users: List<User>, response: (DataState) -> Unit) {
+        response(LoadingState)
+
+        // Delay of 1 second
+        if (name.isEmpty()) {
+            response(ErrorState(Throwable("Name is required")))
+        } else {
+            val id = (1..10000000).random()
+            val group = Group(id, name, users)
+            response(SuccessState(group))
+        }
+    }
+}
+
+data class Group(val id: Int, val name: String, val members: List<User> = listOf())

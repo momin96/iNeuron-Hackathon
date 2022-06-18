@@ -23,8 +23,10 @@ class GroupListStore: ObservableObject {
 }
 
 struct GroupListView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var store = GroupListStore()
+    
+    @Binding var bindedUserList: [User]
     
     var body: some View {
         NavigationView {
@@ -32,7 +34,8 @@ struct GroupListView: View {
                 ForEach(store.groups, id: \.self) { group in
                     HStack {
                         Button {
-                            
+                            bindedUserList = group.members
+                            dismiss()
                         } label: {
                             HStack {
                                 Text(group.name)

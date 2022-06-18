@@ -32,12 +32,11 @@ struct UserListView: View {
     var body: some View {
         
         VStack {
-            
             List {
                 if showGroup {
                     Section {
                         NavigationLink {
-                            GroupListView()
+                            GroupListView(bindedUserList: $bindedUsers)
                         } label: {
                             Text("Choose Group")
                         }

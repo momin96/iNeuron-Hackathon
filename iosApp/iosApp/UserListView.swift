@@ -23,7 +23,6 @@ class UserListStore: ObservableObject {
 
 struct UserListView: View {
        
-    
     @StateObject private var store = UserListStore()
     @State private var usersList = [User]()
     
@@ -55,10 +54,14 @@ struct UserListView: View {
                 }
             }
 
-            Button {
-                bindedUsers = usersList
-            } label: {
-                Text("Done")
+            .toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
+                    Button {
+                        bindedUsers = usersList
+                    } label: {
+                        Text("Done")
+                    }
+                }
             }
         }
     }

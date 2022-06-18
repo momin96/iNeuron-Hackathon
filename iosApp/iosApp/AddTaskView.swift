@@ -29,6 +29,13 @@ struct AddTaskView: View {
 
     @State private var showErrorAlert = false
     
+    var navigationTitle: String {
+        if taskName.isEmpty {
+            return "New Task"
+        }
+        return taskName
+    }
+    
     var body: some View {
         
         NavigationView {
@@ -47,27 +54,38 @@ struct AddTaskView: View {
                         } else {
                             List {
                                 ForEach(users, id: \.self) { user in
-                                    /*@START_MENU_TOKEN@*/Text(user.name)/*@END_MENU_TOKEN@*/
+                                    Button  {
+                                        
+                                    } label: {
+                                        Text(user.name)
+                                            .foregroundColor(.primary)
+                                    }
+
                                 }
                             }
                         }
                     }
                 }
-                
-                Button {
-                    if !taskName.isEmpty && !users.isEmpty {
-                        store.createTask(with: taskName, users: users)
-                    } else {
-                        // show error alert
-                        showErrorAlert = true
-                    }
-                    
-                } label: {
-                    Text("Create Task")
-                }
                 .alert("Please provide task name & members for it",
                        isPresented: $showErrorAlert) {
                     Text("Error")
+                }
+                
+            }
+            .navigationTitle(Text(navigationTitle))
+            .toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
+                    Button {
+                        if !taskName.isEmpty && !users.isEmpty {
+                            store.createTask(with: taskName, users: users)
+                        } else {
+                            // show error alert
+                            showErrorAlert = true
+                        }
+                        
+                    } label: {
+                        Text("Create")
+                    }
                 }
             }
         }

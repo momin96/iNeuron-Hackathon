@@ -22,42 +22,55 @@ class UserListStore: ObservableObject {
 }
 
 struct UserListView: View {
-       
+    
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var store = UserListStore()
     @State private var usersList = [User]()
     
     @Binding var bindedUsers: [User]
-
+    var showGroup: Bool
     
     var body: some View {
         
         VStack {
             List {
-                ForEach(store.users, id: \.self) { user in
-
-                    Button {
-                        if let removalIndex = usersList.firstIndex(of: user) {
-                            usersList.remove(at: removalIndex)
-                        } else {
-                            usersList.append(user)
+                if showGroup {
+                    Section {
+                        NavigationLink {
+                            GroupListView(bindedUserList: $bindedUsers)
+                        } label: {
+                            Text("Choose Group")
                         }
-                    } label: {
-                        HStack {
-                            Text(user.name)
-                                .foregroundColor(.primary)
-                            Spacer()
-                            if usersList.contains(user) {
-                                Image(systemName: "checkmark")
+                    }
+                }
+                Section{
+                    ForEach(store.users, id: \.self) { user in
+                        
+                        Button {
+                            if let removalIndex = usersList.firstIndex(of: user) {
+                                usersList.remove(at: removalIndex)
+                            } else {
+                                usersList.append(user)
+                            }
+                        } label: {
+                            HStack {
+                                Text(user.name)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if usersList.contains(user) {
+                                    Image(systemName: "checkmark")
+                                }
                             }
                         }
                     }
                 }
             }
-
+            
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
                     Button {
                         bindedUsers = usersList
+                        dismiss()
                     } label: {
                         Text("Done")
                     }

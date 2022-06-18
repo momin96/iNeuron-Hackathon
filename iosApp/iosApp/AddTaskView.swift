@@ -66,7 +66,7 @@ struct AddTaskView: View {
                     Section("Members") {
                         if users.isEmpty {
                             NavigationLink {
-                                UserListView(bindedUsers: $users)
+                                UserListView(bindedUsers: $users, showGroup: true)
                             } label: {
                                 Text("Select Members")
                             }
@@ -96,7 +96,7 @@ struct AddTaskView: View {
                      Text("Create Group")
                  }
                  .sheet(isPresented: $showGroupSheet) {
-                     GroupView()
+                     GroupView(bindedUser: $users)
                  }
             }
             .loadingIndicator(show: store.showLoader)

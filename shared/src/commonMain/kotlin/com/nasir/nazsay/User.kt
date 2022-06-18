@@ -50,10 +50,10 @@ class GroupViewModel {
             response(ErrorState(Throwable("Name is required")))
         } else {
             val id = (1..10000000).random()
-            val group = Group(id, name, users)
+            val group = MembersGroup(id, name, users)
             response(SuccessState(group))
         }
     }
 }
 
-data class Group(val id: Int, val name: String, val members: List<User> = listOf())
+data class MembersGroup(val id: Int, val name: String, val members: List<User> = listOf())

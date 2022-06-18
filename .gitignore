@@ -14,3 +14,12 @@ shared/build/cocoapods/framework/shared.framework/Modules/module.modulemap
 shared/build/cocoapods/framework/shared.framework/shared
 shared/build/cocoapods/framework/shared.framework/Info.plist
 shared/build/kotlin/compileDebugKotlinAndroid
+.idea
+androidApp/build/intermediates/dex
+androidApp/build/intermediates/project_dex_archive
+androidApp/build/intermediates/merged_res
+androidApp/build/intermediates/dex_archive_input_jar_hashes
+androidApp/build/kotlin
+androidApp/build/outputs
+androidApp/build/tmp
+shared

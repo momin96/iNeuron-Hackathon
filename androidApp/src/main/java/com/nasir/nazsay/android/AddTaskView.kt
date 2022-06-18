@@ -11,13 +11,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.nasir.nazsay.*
 
 @Composable
-fun AddTasKView() {
+fun AddTasKView(taskViewModel: TaskViewModel) {
     val text = remember { mutableStateOf("") }
+    var users = remember { mutableStateOf(listOf<User>()) }
+    var isError = remember { mutableStateOf(false) }
+    var isLoading = remember { mutableStateOf(false) }
+    var errorMessage = remember { mutableStateOf("") }
 
     Center() {
-
         TextField(
             value = text.value,
             onValueChange = { text.value = it },
@@ -26,7 +30,24 @@ fun AddTasKView() {
         )
 
         Button(onClick = {
+            print("clicked ${text.value}")
             text.value = ""
+            taskViewModel.createTask(text.value, users.value ) {
+                when (it) {
+                    is LoadingState -> {
+                        isLoading.value = true
+                    }
+                    is ErrorState -> {
+                        val errorState: ErrorState = it as ErrorState
+                        isError.value = true
+                        errorMessage.value = errorState.throwable.message ?: "Unknown error"
+                    }
+                    is SuccessState<*> -> {
+                        text.value = ""
+                        users.value = listOf()
+                    }
+                }
+            }
         }) {
             Text("Add")
         }
@@ -36,7 +57,7 @@ fun AddTasKView() {
 @Composable
 @Preview
 fun AddTaskPreview() {
-    AddTasKView()
+    AddTasKView(TaskViewModel())
 }
 
 @Composable

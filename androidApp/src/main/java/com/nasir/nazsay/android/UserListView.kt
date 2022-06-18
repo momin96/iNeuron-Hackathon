@@ -8,7 +8,5 @@ import com.nasir.nazsay.UserListViewModel
 
 @Composable
 fun UserListView(viewModel: UserListViewModel) {
-    Surface {
-        AddTasKView()
-    }
+
 }

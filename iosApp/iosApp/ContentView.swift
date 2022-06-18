@@ -1,30 +1,9 @@
 import SwiftUI
 import shared
 
-
-class UserViewModel: ObservableObject {
-    
-//    let userList: [User]
-    
-    init() {
-//        self.userList = UserViewModel().userList
-    }
-    
-}
-
 struct ContentView: View {
-
-    @StateObject var viewModel = UserViewModel()
-    
     var body: some View {
-        
         AddTaskView()
-//        List {
-//            ForEach($viewModel.userList, id: \.self) { user in
-//                Text(user.name)
-//            }
-//        }
-        
     }
 }
 
@@ -50,7 +29,7 @@ struct AddTaskView: View {
                 
                 if users.isEmpty {
                     NavigationLink {
-                        UserListView(bindingUser: $users)
+                        UserListView(bindedUsers: $users)
                     } label: {
                         Text("Select Members")
                     }
@@ -71,26 +50,31 @@ struct AddTaskView: View {
     }
 }
 
-
-struct User: Hashable {
-    let name: String
-    init(_ name: String) {
-        self.name = name
+class UserListStore: ObservableObject {
+    
+    let users: [User]
+    
+    init() {
+        self.users = UserListViewModel().usersList()
     }
+    
 }
 
 struct UserListView: View {
-   
-    let users = [User("A"), User("B"), User("C"), User("D")]
+       
     
-    @Binding var bindingUser: [User]
+    @StateObject private var store = UserListStore()
     @State private var usersList = [User]()
     
+    @Binding var bindedUsers: [User]
+
+    
     var body: some View {
+        
         VStack {
             List {
-                ForEach(users, id: \.self) { user in
-                    
+                ForEach(store.users, id: \.self) { user in
+
                     Button {
                         if let removalIndex = usersList.firstIndex(of: user) {
                             usersList.remove(at: removalIndex)
@@ -109,9 +93,9 @@ struct UserListView: View {
                     }
                 }
             }
-            
+
             Button {
-                bindingUser = usersList
+                bindedUsers = usersList
             } label: {
                 Text("Done")
             }

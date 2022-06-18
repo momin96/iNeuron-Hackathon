@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedTask, SharedUser;
+@class SharedUser, SharedTask;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -161,10 +161,11 @@ __attribute__((swift_name("Platform")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Task")))
 @interface SharedTask : SharedBase
-- (instancetype)initWithId:(int32_t)id name:(NSString *)name __attribute__((swift_name("init(id:name:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithId:(int32_t)id name:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("init(id:name:users:)"))) __attribute__((objc_designated_initializer));
 - (int32_t)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
-- (SharedTask *)doCopyId:(int32_t)id name:(NSString *)name __attribute__((swift_name("doCopy(id:name:)")));
+- (NSArray<SharedUser *> *)component3 __attribute__((swift_name("component3()")));
+- (SharedTask *)doCopyId:(int32_t)id name:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("doCopy(id:name:users:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -172,7 +173,15 @@ __attribute__((swift_name("Task")))
 @property (readonly) int32_t id __attribute__((swift_name("id")));
 @property (readonly) NSString *name __attribute__((swift_name("name")));
 @property int64_t updatedAt __attribute__((swift_name("updatedAt")));
-@property NSArray<SharedUser *> *users __attribute__((swift_name("users")));
+@property (readonly) NSArray<SharedUser *> *users __attribute__((swift_name("users")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("TaskViewModel")))
+@interface SharedTaskViewModel : SharedBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (void)createTaskName:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("createTask(name:users:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))

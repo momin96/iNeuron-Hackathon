@@ -5,9 +5,3 @@ class Greeting {
         return "Hello, ${Platform().platform}!"
     }
 }
-
-class UserFetcher() {
-    fun usersList(): List<User> {
-        return listOf(User(1, "John"), User(2, "Jane"))
-    }
-}

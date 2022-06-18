@@ -8,15 +8,5 @@ import com.nasir.nazsay.UserListViewModel
 
 @Composable
 fun UserListView(viewModel: UserListViewModel) {
-    Surface {
-        for (user in viewModel.usersList()) {
-            Text(text = user.name)
-        }
-    }
-}
 
-@Composable
-@Preview
-fun UserListViewPreview() {
-    UserListView(UserListViewModel())
 }

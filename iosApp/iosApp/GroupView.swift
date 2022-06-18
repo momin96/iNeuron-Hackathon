@@ -62,12 +62,6 @@ struct GroupView: View {
                         TextField("Name", text: $groupName)
                     }
                     
-//                    Section() {
-//                        HStack {
-//
-//                        }
-//                    }
-                    
                     Section("Members") {
                         if users.isEmpty {
                             NavigationLink {

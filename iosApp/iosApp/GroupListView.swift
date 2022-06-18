@@ -14,7 +14,7 @@ class GroupListStore: ObservableObject {
     
     let groupListViewModel = GroupListViewModel()
     
-    let groups: [Group]
+    var groups: [MembersGroup]
     
     init() {
         groups = groupListViewModel.groupList()
@@ -27,22 +27,25 @@ struct GroupListView: View {
     @StateObject private var store = GroupListStore()
     
     var body: some View {
-        List {
-            ForEach(store.groups, id: \.self) { group in
-                HStack {
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Text(group.name)
-                            Spacer()
-                            Text(group.members.count)
-                            Image(systemName: "person")
+        NavigationView {
+            List {
+                ForEach(store.groups, id: \.self) { group in
+                    HStack {
+                        Button {
+                            
+                        } label: {
+                            HStack {
+                                Text(group.name)
+                                Spacer()
+                                Image(systemName: "person")
+                                Text("\(group.members.count)")
+                            }
+                            .foregroundColor(.primary)
                         }
                     }
-
                 }
             }
+            .navigationTitle(Text("Select Group"))
         }
     }
 }

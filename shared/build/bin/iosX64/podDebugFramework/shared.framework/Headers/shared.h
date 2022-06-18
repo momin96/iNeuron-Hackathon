@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedDataState, SharedKotlinThrowable, SharedUser, SharedGroup, SharedLoadingState, SharedSuccessState<T>, SharedTask, SharedKotlinArray<T>;
+@class SharedDataState, SharedKotlinThrowable, SharedMembersGroup, SharedUser, SharedLoadingState, SharedSuccessState<T>, SharedTask, SharedKotlinArray<T>;
 
 @protocol SharedKotlinIterator;
 
@@ -168,27 +168,11 @@ __attribute__((swift_name("Greeting")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Group")))
-@interface SharedGroup : SharedBase
-- (instancetype)initWithId:(int32_t)id name:(NSString *)name members:(NSArray<SharedUser *> *)members __attribute__((swift_name("init(id:name:members:)"))) __attribute__((objc_designated_initializer));
-- (int32_t)component1 __attribute__((swift_name("component1()")));
-- (NSString *)component2 __attribute__((swift_name("component2()")));
-- (NSArray<SharedUser *> *)component3 __attribute__((swift_name("component3()")));
-- (SharedGroup *)doCopyId:(int32_t)id name:(NSString *)name members:(NSArray<SharedUser *> *)members __attribute__((swift_name("doCopy(id:name:members:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) int32_t id __attribute__((swift_name("id")));
-@property (readonly) NSArray<SharedUser *> *members __attribute__((swift_name("members")));
-@property (readonly) NSString *name __attribute__((swift_name("name")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GroupListViewModel")))
 @interface SharedGroupListViewModel : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (NSArray<SharedGroup *> *)groupList __attribute__((swift_name("groupList()")));
+- (NSArray<SharedMembersGroup *> *)groupList __attribute__((swift_name("groupList()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -208,6 +192,22 @@ __attribute__((swift_name("LoadingState")))
 + (instancetype)new __attribute__((unavailable));
 + (instancetype)loadingState __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SharedLoadingState *shared __attribute__((swift_name("shared")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MembersGroup")))
+@interface SharedMembersGroup : SharedBase
+- (instancetype)initWithId:(int32_t)id name:(NSString *)name members:(NSArray<SharedUser *> *)members __attribute__((swift_name("init(id:name:members:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSArray<SharedUser *> *)component3 __attribute__((swift_name("component3()")));
+- (SharedMembersGroup *)doCopyId:(int32_t)id name:(NSString *)name members:(NSArray<SharedUser *> *)members __attribute__((swift_name("doCopy(id:name:members:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) int32_t id __attribute__((swift_name("id")));
+@property (readonly) NSArray<SharedUser *> *members __attribute__((swift_name("members")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
 @end;
 
 __attribute__((objc_subclassing_restricted))

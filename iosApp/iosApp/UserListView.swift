@@ -37,7 +37,7 @@ struct UserListView: View {
                 if showGroup {
                     Section {
                         NavigationLink {
-                            
+                            GroupListView()
                         } label: {
                             Text("Choose Group")
                         }

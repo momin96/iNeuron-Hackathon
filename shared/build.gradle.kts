@@ -44,8 +44,8 @@ kotlin {
                 implementation ("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializer_version")
 
                 // KODE IN
-                implementation ("org.kodein.di:kodein-di-core:$kodeinVersion")
-                implementation ("org.kodein.di:kodein-di-erased:$kodeinVersion")
+//                implementation ("org.kodein.di:kodein-di-core:$kodeinVersion")
+//                implementation ("org.kodein.di:kodein-di-erased:$kodeinVersion")
 
                 // FIRE STORE
                 implementation ("co.touchlab:firestore:0.2.5")

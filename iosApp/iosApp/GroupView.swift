@@ -71,7 +71,7 @@ struct GroupView: View {
                     Section("Members") {
                         if users.isEmpty {
                             NavigationLink {
-                                UserListView(bindedUsers: $users)
+                                UserListView(bindedUsers: $users, showGroup: false)
                             } label: {
                                 Text("Select Members")
                             }

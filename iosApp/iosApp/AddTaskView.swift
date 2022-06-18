@@ -66,7 +66,7 @@ struct AddTaskView: View {
                     Section("Members") {
                         if users.isEmpty {
                             NavigationLink {
-                                UserListView(bindedUsers: $users)
+                                UserListView(bindedUsers: $users, showGroup: true)
                             } label: {
                                 Text("Select Members")
                             }

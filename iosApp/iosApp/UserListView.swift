@@ -23,6 +23,7 @@ class UserListStore: ObservableObject {
 
 struct UserListView: View {
     
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var store = UserListStore()
     @State private var usersList = [User]()
     
@@ -69,6 +70,7 @@ struct UserListView: View {
                 ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
                     Button {
                         bindedUsers = usersList
+                        dismiss()
                     } label: {
                         Text("Done")
                     }

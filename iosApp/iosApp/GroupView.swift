@@ -14,10 +14,11 @@ class GroupStore: ObservableObject {
     
     @Published var errorMessage: String?
     @Published var showLoader = false
-
     let groupViewModel = GroupViewModel()
     
-    func createGroup(with name: String, users: [User]) {
+    func createGroup(with name: String,
+                     users: [User],
+                     response: @escaping (([User]?) -> Void)) {
         groupViewModel.createGroup(name: name, users: users) { [weak self] state in
             if state is LoadingState {
                 self?.showLoader = true
@@ -25,6 +26,8 @@ class GroupStore: ObservableObject {
                 self?.showLoader = false
                 if let state = state as? ErrorState {
                     self?.errorMessage = state.throwable.message
+                } else if let successState = state as? SuccessState<MembersGroup> {
+                    response(successState.data?.members)
                 }
             }
         }
@@ -39,6 +42,8 @@ struct GroupView: View {
     
     @State private var groupName = ""
     @State private var users: [User] = [User]()
+    @State private var shouldActivate = false
+    @Binding var bindedUser: [User]
     
     private var errorBinding: Binding<Bool> {
         Binding<Bool> { store.errorMessage != nil }
@@ -72,13 +77,18 @@ struct GroupView: View {
                         } else {
                             List {
                                 ForEach(users, id: \.self) { user in
-                                    Button  {
-                                        store.createGroup(with: groupName, users: users)
-                                    } label: {
-                                        Text(user.name)
-                                            .foregroundColor(.primary)
+                                    HStack {
+                                        Button  {
+                                            shouldActivate = true
+                                        } label: {
+                                            Text(user.name)
+                                                .foregroundColor(.primary)
+                                        }
+                                        Spacer()
+                                        NavigationLink(destination: UserListView(bindedUsers: $users, showGroup: false), isActive: $shouldActivate) {
+                                            Image(systemName: "chevron")
+                                        }.frame(width: 20)
                                     }
-                                    
                                 }
                             }
                         }
@@ -94,7 +104,11 @@ struct GroupView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
-                        store.createGroup(with: groupName, users: users)
+                        store.createGroup(with: groupName, users: users) { users in
+                            if let users = users {
+                                self.bindedUser = users
+                            }
+                        }
                     } label: {
                         Text("Create")
                     }

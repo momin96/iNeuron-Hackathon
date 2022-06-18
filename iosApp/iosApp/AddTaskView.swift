@@ -96,7 +96,7 @@ struct AddTaskView: View {
                      Text("Create Group")
                  }
                  .sheet(isPresented: $showGroupSheet) {
-                     GroupView()
+                     GroupView(bindedUser: $users)
                  }
             }
             .loadingIndicator(show: store.showLoader)

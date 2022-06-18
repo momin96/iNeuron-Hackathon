@@ -182,6 +182,7 @@ __attribute__((swift_name("TaskViewModel")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (void)createTaskName:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("createTask(name:users:)")));
+- (void)storeTaskTask:(SharedTask *)task __attribute__((swift_name("storeTask(task:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))

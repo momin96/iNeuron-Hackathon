@@ -12,6 +12,13 @@ import SwiftUI
 
 class GroupListStore: ObservableObject {
     
+    let groupListViewModel = GroupListViewModel()
+    
+    let groups: [Group]
+    
+    init() {
+        groups = groupListViewModel.groupList()
+    }
     
 }
 
@@ -20,6 +27,22 @@ struct GroupListView: View {
     @StateObject private var store = GroupListStore()
     
     var body: some View {
-        Text("Group View")
+        List {
+            ForEach(store.groups, id: \.self) { group in
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        HStack {
+                            Text(group.name)
+                            Spacer()
+                            Text(group.members.count)
+                            Image(systemName: "person")
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

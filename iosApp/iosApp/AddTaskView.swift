@@ -105,6 +105,7 @@ struct AddTaskView: View {
 
 
 class GroupStore: ObservableObject {
+    let groupViewModel = GroupViewModel()
     
 }
 

@@ -28,6 +28,7 @@ struct AddTaskView: View {
     @State private var users: [User] = [User]()
 
     @State private var showErrorAlert = false
+    @State private var showGroupSheet = false
     
     var navigationTitle: String {
         if taskName.isEmpty {
@@ -71,6 +72,15 @@ struct AddTaskView: View {
                     Text("Error")
                 }
                 
+                Button {
+                    showGroupSheet = true
+                } label: {
+                    Text("Create Group")
+                }
+                .sheet(isPresented: $showGroupSheet) {
+                    GroupView()
+                }
+
             }
             .navigationTitle(Text(navigationTitle))
             .toolbar {
@@ -85,6 +95,87 @@ struct AddTaskView: View {
                         
                     } label: {
                         Text("Create")
+                    }
+                }
+            }
+        }
+    }
+}
+
+class GroupStore: ObservableObject {
+    
+}
+
+struct GroupView: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    @StateObject private var groupStore = GroupStore()
+    
+    @State private var groupName = ""
+    @State private var users: [User] = [User]()
+
+    var navigationTitle: String {
+        if groupName.isEmpty {
+            return "Group"
+        }
+        return groupName
+    }
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Form {
+                    Section {
+                        TextField("Name", text: $groupName)
+                    }
+                    
+                    Section() {
+                        HStack {
+                            
+                        }
+                    }
+                    
+                    Section("Members") {
+                        if users.isEmpty {
+                            NavigationLink {
+                                UserListView(bindedUsers: $users)
+                            } label: {
+                                Text("Select Members")
+                            }
+                        } else {
+                            List {
+                                ForEach(users, id: \.self) { user in
+                                    Button  {
+                                        
+                                    } label: {
+                                        Text(user.name)
+                                            .foregroundColor(.primary)
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         
+            .navigationTitle(Text(navigationTitle))
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Create")
+                    }
+
+                }
+                
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
                     }
                 }
             }

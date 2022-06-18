@@ -14,13 +14,19 @@ import SwiftUI
 class TaskStore: ObservableObject {
     
     @Published var errorMessage: String?
+    @Published var showLoader = false
     
     let taskViewModel = TaskViewModel()
     
     func createTask(with name: String, users: [User]) {
         taskViewModel.createTask(name: name, users: users) { [weak self] state in
-            if let state = state as? ErrorState {
-                self?.errorMessage = state.throwable.message
+            if state is LoadingState {
+                self?.showLoader = true
+            } else {
+                self?.showLoader = false
+                if let state = state as? ErrorState {
+                    self?.errorMessage = state.throwable.message
+                }
             }
         }
     }
@@ -92,9 +98,8 @@ struct AddTaskView: View {
                  .sheet(isPresented: $showGroupSheet) {
                      GroupView()
                  }
-
-                
             }
+            .loadingIndicator(show: store.showLoader)
             .navigationTitle(Text(navigationTitle))
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {

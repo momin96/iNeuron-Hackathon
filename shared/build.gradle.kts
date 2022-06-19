@@ -21,11 +21,12 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+    val coroutinesVersion = "1.5.0-native-mt"
     sourceSets {
         val commonMain by getting {
             dependencies {
 //                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
         }
         val commonTest by getting {

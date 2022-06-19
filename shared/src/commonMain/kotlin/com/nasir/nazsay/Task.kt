@@ -1,7 +1,10 @@
 package com.nasir.nazsay
 
-data class Task(val id: Int, val name: String) {
+data class Task(val id: Int, val name: String, val users: List<User>) {
     var createdAt: Long = 0
     var updatedAt: Long = 0
-    var users: List<User> = listOf()
+
+    fun members(): List<User> {
+        return users
+    }
 }

@@ -6,7 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedUser;
+@class SharedDataState, SharedKotlinThrowable, SharedMembersGroup, SharedUser, SharedLoadingState, SharedSuccessState<T>, SharedTask, SharedKotlinArray<T>;
+
+@protocol SharedKotlinIterator;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -142,20 +144,107 @@ __attribute__((swift_name("KotlinBoolean")))
 + (instancetype)numberWithBool:(BOOL)value;
 @end;
 
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Greeting")))
-@interface SharedGreeting : SharedBase
+__attribute__((swift_name("DataState")))
+@interface SharedDataState : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (NSString *)greeting __attribute__((swift_name("greeting()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Platform")))
-@interface SharedPlatform : SharedBase
+__attribute__((swift_name("ErrorState")))
+@interface SharedErrorState : SharedDataState
+- (instancetype)initWithThrowable:(SharedKotlinThrowable *)throwable __attribute__((swift_name("init(throwable:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+@property SharedKotlinThrowable *throwable __attribute__((swift_name("throwable")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GroupListViewModel")))
+@interface SharedGroupListViewModel : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-@property (readonly) NSString *platform __attribute__((swift_name("platform")));
+- (NSArray<SharedMembersGroup *> *)groupList __attribute__((swift_name("groupList()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GroupViewModel")))
+@interface SharedGroupViewModel : SharedBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (void)createGroupName:(NSString *)name users:(NSArray<SharedUser *> *)users response:(void (^)(SharedDataState *))response __attribute__((swift_name("createGroup(name:users:response:)")));
+- (NSArray<SharedMembersGroup *> *)groupList __attribute__((swift_name("groupList()")));
+@property (getter=groupList_) NSMutableArray<SharedMembersGroup *> *groupList __attribute__((swift_name("groupList")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LoadingState")))
+@interface SharedLoadingState : SharedDataState
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)loadingState __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SharedLoadingState *shared __attribute__((swift_name("shared")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MembersGroup")))
+@interface SharedMembersGroup : SharedBase
+- (instancetype)initWithId:(int32_t)id name:(NSString *)name members:(NSArray<SharedUser *> *)members __attribute__((swift_name("init(id:name:members:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSArray<SharedUser *> *)component3 __attribute__((swift_name("component3()")));
+- (SharedMembersGroup *)doCopyId:(int32_t)id name:(NSString *)name members:(NSArray<SharedUser *> *)members __attribute__((swift_name("doCopy(id:name:members:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) int32_t id __attribute__((swift_name("id")));
+@property (readonly) NSArray<SharedUser *> *members __attribute__((swift_name("members")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuccessState")))
+@interface SharedSuccessState<T> : SharedDataState
+- (instancetype)initWithData:(T _Nullable)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (T _Nullable)component1 __attribute__((swift_name("component1()")));
+- (SharedSuccessState<T> *)doCopyData:(T _Nullable)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) T _Nullable data __attribute__((swift_name("data")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Task")))
+@interface SharedTask : SharedBase
+- (instancetype)initWithId:(int32_t)id name:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("init(id:name:users:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSArray<SharedUser *> *)component3 __attribute__((swift_name("component3()")));
+- (SharedTask *)doCopyId:(int32_t)id name:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("doCopy(id:name:users:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSArray<SharedUser *> *)members __attribute__((swift_name("members()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property int64_t createdAt __attribute__((swift_name("createdAt")));
+@property (readonly) int32_t id __attribute__((swift_name("id")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
+@property int64_t updatedAt __attribute__((swift_name("updatedAt")));
+@property (readonly) NSArray<SharedUser *> *users __attribute__((swift_name("users")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("TaskViewModel")))
+@interface SharedTaskViewModel : SharedBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (void)createTaskName:(NSString *)name users:(NSArray<SharedUser *> *)users response:(void (^)(SharedDataState *))response __attribute__((swift_name("createTask(name:users:response:)")));
+- (void)storeTaskTask:(SharedTask *)task __attribute__((swift_name("storeTask(task:)")));
+@property NSMutableArray<SharedTask *> *taskList __attribute__((swift_name("taskList")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -173,11 +262,45 @@ __attribute__((swift_name("User")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("UserFetcher")))
-@interface SharedUserFetcher : SharedBase
+__attribute__((swift_name("UserListViewModel")))
+@interface SharedUserListViewModel : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (NSArray<SharedUser *> *)usersList __attribute__((swift_name("usersList()")));
+@end;
+
+__attribute__((swift_name("KotlinThrowable")))
+@interface SharedKotlinThrowable : SharedBase
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (SharedKotlinArray<NSString *> *)getStackTrace __attribute__((swift_name("getStackTrace()")));
+- (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SharedKotlinThrowable * _Nullable cause __attribute__((swift_name("cause")));
+@property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
+- (NSError *)asError __attribute__((swift_name("asError()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinArray")))
+@interface SharedKotlinArray<T> : SharedBase
++ (instancetype)arrayWithSize:(int32_t)size init:(T _Nullable (^)(SharedInt *))init __attribute__((swift_name("init(size:init:)")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (T _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
+- (id<SharedKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
+- (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
+@property (readonly) int32_t size __attribute__((swift_name("size")));
+@end;
+
+__attribute__((swift_name("KotlinIterator")))
+@protocol SharedKotlinIterator
+@required
+- (BOOL)hasNext __attribute__((swift_name("hasNext()")));
+- (id _Nullable)next __attribute__((swift_name("next()")));
 @end;
 
 #pragma pop_macro("_Nullable_result")

@@ -1,0 +1,6 @@
+
+*.xcuserstate
+.gradle
+*.dex
+*.ap_
+*.txt

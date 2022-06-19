@@ -173,6 +173,8 @@ __attribute__((swift_name("GroupViewModel")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (void)createGroupName:(NSString *)name users:(NSArray<SharedUser *> *)users response:(void (^)(SharedDataState *))response __attribute__((swift_name("createGroup(name:users:response:)")));
+- (NSArray<SharedMembersGroup *> *)groupList __attribute__((swift_name("groupList()")));
+@property (getter=groupList_) NSMutableArray<SharedMembersGroup *> *groupList __attribute__((swift_name("groupList")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -226,6 +228,7 @@ __attribute__((swift_name("Task")))
 - (SharedTask *)doCopyId:(int32_t)id name:(NSString *)name users:(NSArray<SharedUser *> *)users __attribute__((swift_name("doCopy(id:name:users:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSArray<SharedUser *> *)members __attribute__((swift_name("members()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property int64_t createdAt __attribute__((swift_name("createdAt")));
 @property (readonly) int32_t id __attribute__((swift_name("id")));
@@ -241,6 +244,7 @@ __attribute__((swift_name("TaskViewModel")))
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (void)createTaskName:(NSString *)name users:(NSArray<SharedUser *> *)users response:(void (^)(SharedDataState *))response __attribute__((swift_name("createTask(name:users:response:)")));
 - (void)storeTaskTask:(SharedTask *)task __attribute__((swift_name("storeTask(task:)")));
+@property NSMutableArray<SharedTask *> *taskList __attribute__((swift_name("taskList")));
 @end;
 
 __attribute__((objc_subclassing_restricted))

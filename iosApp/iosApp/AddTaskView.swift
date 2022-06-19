@@ -16,9 +16,13 @@ class TaskStore: ObservableObject {
     @Published var errorMessage: String?
     @Published var showLoader = false
     
+    @Published var taskList: [Task]?
+    
     let taskViewModel = TaskViewModel()
     
     func createTask(with name: String, users: [User]) {
+        
+        
         taskViewModel.createTask(name: name, users: users) { [weak self] state in
             if state is LoadingState {
                 self?.showLoader = true
@@ -26,6 +30,10 @@ class TaskStore: ObservableObject {
                 self?.showLoader = false
                 if let state = state as? ErrorState {
                     self?.errorMessage = state.throwable.message
+                }
+                
+                if self?.taskViewModel.taskList.count != 0 {
+                    self?.taskList = self?.taskViewModel.taskList as? [Task]
                 }
             }
         }
@@ -40,6 +48,7 @@ struct AddTaskView: View {
     @State private var users: [User] = [User]()
     @State private var showGroupSheet = false
     @State private var showErrorAlert = false
+    @State private var shouldActivate = false
     
     private var errorBinding: Binding<Bool> {
         Binding<Bool> { store.errorMessage != nil }
@@ -50,7 +59,7 @@ struct AddTaskView: View {
     
     var navigationTitle: String {
         if taskName.isEmpty {
-            return "New Task"
+            return "Task"
         }
         return taskName
     }
@@ -73,13 +82,37 @@ struct AddTaskView: View {
                         } else {
                             List {
                                 ForEach(users, id: \.self) { user in
-                                    Button  {
+                                    HStack {
+                                        Button  {
+                                            shouldActivate = true
+                                        } label: {
+                                            Text(user.name)
+                                                .foregroundColor(.primary)
+                                        }
+                                        Spacer()
+                                        NavigationLink(isActive: $shouldActivate) {
+                                            UserListView(bindedUsers: $users, showGroup: true)
+                                        } label: {
+                                            EmptyView()
+                                        }.frame(width:30)
                                         
-                                    } label: {
-                                        Text(user.name)
-                                            .foregroundColor(.primary)
                                     }
-
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                    store.taskList.map { tasks in
+                        Section("Tasks") {
+                            List{
+                                ForEach(tasks, id: \.self) { task in
+                                    HStack {
+                                        Text(task.name)
+                                        Spacer()
+                                        Image(systemName: "person")
+                                        Text("\(task.members().count)")
+                                    }
                                 }
                             }
                         }
@@ -105,6 +138,10 @@ struct AddTaskView: View {
                 ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
                     Button {
                         store.createTask(with: taskName, users: users)
+                        if !self.users.isEmpty && !self.taskName.isEmpty {
+                            self.users = []
+                            self.taskName = ""
+                        }
                     } label: {
                         Text("Create")
                     }

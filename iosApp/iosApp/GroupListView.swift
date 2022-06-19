@@ -29,22 +29,20 @@ struct GroupListView: View {
     @Binding var bindedUserList: [User]
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(store.groups, id: \.self) { group in
-                    HStack {
-                        Button {
-                            bindedUserList = group.members
-                            dismiss()
-                        } label: {
-                            HStack {
-                                Text(group.name)
-                                Spacer()
-                                Image(systemName: "person")
-                                Text("\(group.members.count)")
-                            }
-                            .foregroundColor(.primary)
+        List {
+            ForEach(store.groups, id: \.self) { group in
+                HStack {
+                    Button {
+                        bindedUserList = group.members
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Text(group.name)
+                            Spacer()
+                            Image(systemName: "person")
+                            Text("\(group.members.count)")
                         }
+                        .foregroundColor(.primary)
                     }
                 }
             }

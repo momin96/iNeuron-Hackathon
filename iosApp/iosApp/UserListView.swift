@@ -46,7 +46,9 @@ struct UserListView: View {
                             })
                         }
                         .sheet(isPresented: $showGroupSheet) {
-                            GroupListView(bindedUserList: $bindedUsers)
+                            NavigationView {
+                                GroupListView(bindedUserList: $bindedUsers)
+                            }
                         }
                     }
                 }

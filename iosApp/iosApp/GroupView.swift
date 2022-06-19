@@ -86,12 +86,16 @@ struct GroupView: View {
                                         }
                                         Spacer()
                                         NavigationLink(destination: UserListView(bindedUsers: $users, showGroup: false), isActive: $shouldActivate) {
-                                            Image(systemName: "chevron")
+                                            EmptyView()
                                         }.frame(width: 20)
                                     }
                                 }
                             }
                         }
+                    }
+                    
+                    Section("Groups") {
+                        GroupListView(bindedUserList: $users)
                     }
                 }
                 .alert(store.errorMessage ?? "",

@@ -30,16 +30,23 @@ struct UserListView: View {
     @Binding var bindedUsers: [User]
     var showGroup: Bool
     
+    @State private var showGroupSheet = false
+    
     var body: some View {
-        
-        VStack {
+        Form {
             List {
                 if showGroup {
                     Section {
-                        NavigationLink {
+                        
+                        HStack {
+                            Button(action: {
+                                showGroupSheet = true
+                            }, label: {
+                                Text("Choose Group").foregroundColor(.primary)
+                            })
+                        }
+                        .sheet(isPresented: $showGroupSheet) {
                             GroupListView(bindedUserList: $bindedUsers)
-                        } label: {
-                            Text("Choose Group")
                         }
                     }
                 }

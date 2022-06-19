@@ -107,6 +107,7 @@ struct GroupView: View {
                         store.createGroup(with: groupName, users: users) { users in
                             if let users = users {
                                 self.bindedUser = users
+                                dismiss()
                             }
                         }
                     } label: {

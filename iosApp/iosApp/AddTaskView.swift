@@ -32,10 +32,9 @@ class TaskStore: ObservableObject {
                     self?.errorMessage = state.throwable.message
                 }
                 
-                self?.objectWillChange.send()
-                self?.taskList = self?.taskViewModel.taskList as? [Task]
-                print(self?.taskList)
-
+                if self?.taskViewModel.taskList.count != 0 {
+                    self?.taskList = self?.taskViewModel.taskList as? [Task]
+                }
             }
         }
     }
@@ -139,6 +138,10 @@ struct AddTaskView: View {
                 ToolbarItem(placement: ToolbarItemPlacement.confirmationAction) {
                     Button {
                         store.createTask(with: taskName, users: users)
+                        if !self.users.isEmpty && !self.taskName.isEmpty {
+                            self.users = []
+                            self.taskName = ""
+                        }
                     } label: {
                         Text("Create")
                     }
